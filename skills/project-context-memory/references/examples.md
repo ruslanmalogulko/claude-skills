@@ -200,6 +200,33 @@ trust, not re-run. MAN-4041's ✅ RESOLVED marker: the requiredness half shipped
 did not, so I left it 🔴 OPEN rather than upgrading it.
 ```
 
+## A concurrent edit, handled
+
+This happened. Treat it as the expected case, not the unlucky one.
+
+A checkpoint pass read the plan, spent several minutes verifying claims against `git` and the GitHub API, then wrote a new state block and appended a checkpoint section. Between that read and that write, **another session appended its own checkpoint covering two of the same findings.**
+
+What saved it was mechanical, not deliberate: the writes were targeted edits against unique anchor strings, so the concurrent append survived. A whole-file rewrite from the stale read would have destroyed it silently, and the loss would have looked like nothing at all.
+
+What the pass then did, after noticing:
+
+1. **Compared the two accounts instead of merging blindly.** The other session's was better on the shared findings - it had verified one by running a probe rather than by reading, and carried two corrections the first pass did not have.
+2. **Deleted its own duplicates** and left a pointer to the other section. Two competing accounts of one finding is worse than either alone: the next reader cannot tell which is current.
+3. **Kept every unique fact** it had established - CI state on the current head, and why `mergeStateStatus` was blocked.
+4. **Recorded the collision itself** in the plan, as provenance:
+
+```markdown
+**Concurrent edit, worth recording as provenance.** The section directly above was appended by
+another session *between* my read of this plan and my write to it. I did not overwrite it - the
+edit was surgical - but I also had not re-read before writing, which is the mistake and not the
+save. It owns the two unresolved cursor findings and carries two corrections mine did not. Not
+duplicating any of that here.
+```
+
+Note what is *not* in that entry: no apology, no narration of the near-miss beyond its consequence. It exists so the next reader knows why two sections cover adjacent ground and which one is authoritative.
+
+**The rule this earns:** re-read immediately before writing, and prefer the anchored edit. Deferring to the better-verified account costs one paragraph. Silently clobbering another session's verified work costs whatever it found.
+
 ## Not triggering
 
 Task: *"rename the local variable `mf` to `missing`."*

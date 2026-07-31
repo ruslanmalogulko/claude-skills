@@ -104,6 +104,14 @@ Two packages describing similar behaviour are not two copies of one implementati
 
 ### 5. Update during work
 
+**Re-read the plan immediately before every write. This is a precondition, not hygiene.**
+
+Not "if you suspect it changed" - always, and immediately before, not earlier in the turn. These files are shared: another session, a /loop pass, or a pr-shepherd run can append between your read and your write, and nothing warns you. Minutes of your own tool calls are enough time.
+
+Then write with a targeted edit against a unique anchor string, never a whole-file rewrite. A surgical edit survives a concurrent append; a rewrite silently destroys it. This includes replacing the state block: that is an anchored edit on one block, not a reason to rewrite the file.
+
+If the file did change, say so and reconcile before adding anything: the other writer may already own what you were about to record. When it does, defer to it and delete your duplicate rather than leaving two competing accounts of the same finding - and keep whichever version verified more, not whichever arrived first.
+
 The plan's state block is the mutable pointer. Findings are append-only.
 
 **You may replace the state block** when both hold:
@@ -126,7 +134,7 @@ Distil at a boundary, not after every command: plan approved Â· phase complete Â
 
 At a checkpoint, in order:
 
-1. re-read the plan (it may have changed since your last read);
+1. re-read the plan - mandatory, immediately before writing, no exceptions (see step 5);
 2. refresh the state block;
 3. reconcile open and resolved items against evidence;
 4. extract durable findings (see `references/memory-distillation.md`);
@@ -191,6 +199,8 @@ The routing file is `index.md`. Do not invent `README.md`, `AGENTS.md` or `_inde
 | Scaffold a package you are not working in | wait for approval |
 | Mark resolved because the code looks right | verify, or leave it open |
 | Say "checked CI" when you read it from the plan | name what you took on trust |
+| Write from a read you did earlier in the turn | re-read immediately before writing, every time |
+| Rewrite a whole plan file | targeted edit against a unique anchor |
 
 ## Red flags - stop
 
@@ -201,7 +211,9 @@ The routing file is `index.md`. Do not invent `README.md`, `AGENTS.md` or `_inde
 - about to create files in a second package;
 - thinking "I trust you means I can restructure";
 - thinking "this lesson is obviously reusable" without asking who would need it;
-- writing a link without having confirmed the target.
+- writing a link without having confirmed the target;
+- about to write to a plan when the read was not the immediately preceding step;
+- thinking "nobody else is touching this file" - you cannot know that, and the cost of checking is one read.
 
 ## References
 
