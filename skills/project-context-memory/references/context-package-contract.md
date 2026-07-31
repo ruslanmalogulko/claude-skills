@@ -170,7 +170,9 @@ Offer the folder. Do not create it unasked: it is four to six new files, and the
 
 ## Structural changes need approval
 
-Creating `index.md` or `memory/` in the one package you are actively working, at the moment a real finding needs somewhere to live, is routine work. It needs no separate conversation.
+Creating `index.md` or `memory/` in the package you are actively working, at the moment a real finding needs somewhere to live, is routine work. It needs no separate conversation.
+
+**So is creating `_platform/memory/`** when the finding is cross-cutting. Cross-cutting knowledge is *required* to go there, so writing to it is not scaffolding an unrelated package - it is the destination the routing rule names, and it is purely additive and reversible by deleting one directory. Do not ask for approval to put a cross-cutting finding in its only legal home.
 
 Everything below needs explicit approval **before** any file is touched:
 

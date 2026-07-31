@@ -165,7 +165,9 @@ Default to four curated files - `architecture.md`, `conventions.md`, `decisions.
 
 ## Structural changes need approval
 
-Routine, no approval: updating a plan the user pointed you at; appending to an existing memory file; creating `memory/` or `index.md` **in the one package you are working**, at the moment a real finding needs a home.
+Routine, no approval: updating a plan the user pointed you at; appending to an existing memory file; creating `memory/` or `index.md` **in the package you are working**, at the moment a real finding needs a home; **creating `_platform/memory/` and its curated files** when a finding is cross-cutting.
+
+That last one is deliberate. Routing cross-cutting knowledge to `_platform/memory/` is required, so writing there is not "scaffolding a second package" - it is the destination the routing table names. What makes it routine is that it is purely additive: a new directory and a curated file, no moves, no renames, no deletions, no frontmatter backfill, and reversible by deleting one directory.
 
 Approval required **before touching any file**: scaffolding across more than one package · moving, renaming or deleting anything that already exists · a new directory level or naming convention · backfilling frontmatter · any change to the Context root layout.
 
