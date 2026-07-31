@@ -222,3 +222,4 @@ The routing file is `index.md`. Do not invent `README.md`, `AGENTS.md` or `_inde
 - `references/context-package-contract.md` - package shape, frontmatter, relationship vocabulary, links, PR knowledge objects, approval boundary.
 - `references/memory-distillation.md` - the durable-versus-operational test, entry format, worked promotions and rejections.
 - `references/examples.md` - a full discovery-to-report pass, an `index.md`, a state block, a conflict report.
+- `enforcement/README.md` - hooks that make the invoke, no-clobber and fresh-read rules binding instead of advisory. Read this if a `Write` or `Edit` to a vault file was just denied: the denial is one of these, and its message names the fix.

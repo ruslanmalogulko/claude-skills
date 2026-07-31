@@ -25,6 +25,14 @@ If you run Claude Code with a custom `CLAUDE_CONFIG_DIR`, use `$CLAUDE_CONFIG_DI
 
 Confirm it registered by asking Claude to list its available skills.
 
+### Enforcement (optional, recommended)
+
+A skill is guidance the model may skip - and does. `project-context-memory` ships four hooks that make its load-bearing rules binding rather than advisory: invoke-on-signal, refuse to `Write` over an existing shared file, and refuse to `Edit` from a stale read.
+
+See [`skills/project-context-memory/enforcement/`](skills/project-context-memory/enforcement) for what each hook does, the JSON to merge into `settings.json`, and how to prove they fire. They assume a `03-Projects/<product>/Context/` vault layout and need one small edit for anything else.
+
+Skip them if you only want the guidance. The skill works without them; it is just softer.
+
 ## How these are built
 
 Each skill is developed with the TDD-for-documentation loop from Superpowers' `writing-skills`:
