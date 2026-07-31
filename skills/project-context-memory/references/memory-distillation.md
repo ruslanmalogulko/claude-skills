@@ -142,7 +142,14 @@ From the EEI-768 debugging and review pass, a long ledger of dated entries:
 - the screenshot permission refusal - tooling permission, already in the ledger;
 - the test counts - no invariant attached.
 
-Two promotions from an eight-hundred-line pass is a normal ratio. If you are promoting ten things, re-apply the test.
+## How much is too much
+
+Calibrate against the *scope of what you are distilling*, not against a fixed number.
+
+- **One debugging pass or one review round** - expect one to three promotions. Ten means you are copying the ledger.
+- **A whole multi-ticket effort being closed out** - a dozen or more can be right, because you are distilling weeks across several tickets, and decisions-with-reasons are individually cheap and individually load-bearing.
+
+The count is not the test; the four conditions are. Apply them per entry and let the number fall out. If you cannot state a promotion's scope, rationale and evidence in three lines, it is not ready to be promoted - that failure is what "too much" actually looks like.
 
 ## Reconciling before you distil
 
