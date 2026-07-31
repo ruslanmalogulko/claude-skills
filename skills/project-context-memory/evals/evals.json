@@ -57,10 +57,10 @@
       "name": "cross-context-reuse",
       "prompt": "Fix the validation focus behaviour in entity-questionnaire. Vault Context root: <FIXTURE>.",
       "must_do": [
-        "Search the active context first.",
-        "Reach fn-field-validation through a targeted search (identifier, component, hook, service or schema name), not by reading every folder.",
-        "Classify what it found (authoritative / supporting / possibly related / superseded / contradictory).",
-        "State explicitly that the two implementations may differ and verify against the repo before reusing."
+        "Search the active context first, and stop at the first layer that answers the question - if index.md plus memory/ answers it, the sibling search is unnecessary, not skipped.",
+        "Reach any sibling context through a targeted search (identifier, component, hook, service or schema name), not by reading every folder.",
+        "Classify every source it uses (authoritative / supporting / possibly related / superseded / contradictory).",
+        "Verify against the repo before reusing anything, including checking whether a fix the vault calls done is actually present on the current branch."
       ],
       "must_not_do": [
         "Assume the fn-field-validation approach applies unchanged.",

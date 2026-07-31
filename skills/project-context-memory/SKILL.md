@@ -128,6 +128,8 @@ Match the plan's existing conventions - its status markers, its heading style, i
 
 If you were told not to write to the vault, that instruction wins - but say plainly which findings are therefore unlogged and need to be, rather than letting them ride in a message that ends with the session.
 
+**Appending a finding is always in scope, including on a read-only or discovery pass.** It is additive and routine. What a non-checkpoint pass does *not* do is reconcile the state block, upgrade anyone's status marker, or restructure anything - those are checkpoint actions. So on a discovery pass: append what you learned, report the staleness you noticed, and leave the state block for the checkpoint. Do not withhold findings until a plan is approved; an unlogged finding dies with the session.
+
 ### 6. Checkpoint
 
 Distil at a boundary, not after every command: plan approved · phase complete · root cause confirmed · substantial debugging finding · review round done · PR ready for human review · merged · pausing across sessions · the state block contradicts newer entries · state has become hard to read.
